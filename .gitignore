@@ -1,0 +1,8 @@
+# direnv
+.direnv/
+
+# drawio
+**/*.drawio.*bkp
+
+# output
+output.pdf
