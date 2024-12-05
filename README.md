@@ -47,7 +47,7 @@ An example datafile is given with [datafile.md](datafile.md).
 ## Roadmap
 
 - [x] Implement `datafile.md` + `template.tex` to `output.pdf`chain
-- [ ] Implent QR-code section in the `template.tex`
+- [x] Implent QR-code section in the `template.tex`
 - [ ] Implement `datafile.md` + `template.docx` to `output.docx`chain
 - [ ] Implement QR-code generation
 - [ ] Implement banana-accounting web client server
@@ -71,11 +71,21 @@ all necessary dependencies is entered when inside of the project folder:
 To generate the `output.pdf` from the `datafile.md` and the `template.tex`, run:
 
 ```bash
-  pandoc datafile.md -o output.pdf --template=template.tex --pdf-engine=xelatex
+  pandoc datafile.md -o output.pdf --template=pandoc/template.tex --pdf-engine=xelatex
 ```
 
 To continuously generate an `output.pdf` on file saves use:
 
 ```bash
-  find ./ | entr -s 'pandoc datafile.md -o output.pdf --template=template.tex --pdf-engine=xelatex'
+  find ./ | entr -s 'pandoc datafile.md -o output.pdf \
+    --template=pandoc/template.tex --pdf-engine=xelatex'
+```
+
+To continuously generate an `output.pdf` that is then overlayed with `transparent.pdf`,
+ultimately generating an `overlay.pdf`, use:
+
+```bash
+  find ./ | entr -s 'pandoc datafile.md -o output.pdf \
+    --template=pandoc/template.tex --pdf-engine=xelatex \
+  && pdftk output.pdf stamp transparent.pdf output overlay.pdf'
 ```

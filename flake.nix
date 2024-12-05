@@ -26,6 +26,7 @@
     devShells = forEachSupportedSystem ({pkgs}: {
       default = pkgs.mkShell {
         packages = with pkgs; [
+          pdftk
           entr
           gnumake
           pandoc

@@ -4,5 +4,6 @@
 # drawio
 **/*.drawio.*bkp
 
-# output
-output.pdf
+# pdf
+*.pdf
+!pandoc/*.pdf
